@@ -3,17 +3,17 @@ package com.failens.notes.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.failens.notes.dto.NoteDto;
 import com.failens.notes.service.INoteService;
 
-@Controller
+@RestController
 @RequestMapping("/notes")
 public class NoteController {
 
@@ -35,4 +35,10 @@ public class NoteController {
     // public NoteDto newNote(@RequestBody NoteDto note){
     //     return noteService.save(note);
     // }
+
+    @GetMapping("/test")
+    public String printHello(){
+        System.out.println("entra bien");
+        return "--Hello World--";
+    }
 }

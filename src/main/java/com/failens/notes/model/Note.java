@@ -26,6 +26,9 @@ public class Note {
 
     private Date modified;
 
+    public Note(){
+    }
+
     public Note(String title, String content, Date modified) {
         this.title = title;
         this.content = content;

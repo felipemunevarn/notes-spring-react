@@ -11,6 +11,9 @@ public class NoteDto {
     private boolean archived;
     private Date modified;
 
+    public NoteDto() {
+    }
+
     public NoteDto(String title, String content, boolean delete, boolean archived, Date modified) {
         this.title = title;
         this.content = content;
