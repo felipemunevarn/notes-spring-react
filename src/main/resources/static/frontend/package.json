@@ -17,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "/usr/bin/env /usr/lib/jvm/java-18-openjdk-amd64/bin/java -XX:+ShowCodeDetailsInExceptionMessages @/tmp/cp_bz046gp0rwj8dnepy29nle6x0.argfile com.failens.notes.NotesApplication",
+    "dev": "concurrently \"npm run watch\" \"npm start\""
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^7.5.0"
   }
 }
