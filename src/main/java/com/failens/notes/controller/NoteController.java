@@ -31,14 +31,8 @@ public class NoteController {
         return noteService.get(id);
     }
 
-    // @PostMapping("/new")
-    // public NoteDto newNote(@RequestBody NoteDto note){
-    //     return noteService.save(note);
-    // }
-
-    @GetMapping("/test")
-    public String printHello(){
-        System.out.println("entra bien");
-        return "--Hello World--";
+    @PostMapping("/new")
+    public NoteDto newNote(@RequestBody NoteDto note){
+        return noteService.save(note);
     }
 }

@@ -22,7 +22,7 @@ public class NoteServiceImpl implements INoteService {
     private ModelMapper modelMapper;
 
     @Override
-    public NoteDto create(NoteDto note) {
+    public NoteDto save(NoteDto note) {
         Note noteEntity = modelMapper.map(note, Note.class);
         noteEntity = noteRepo.save(noteEntity);
         return modelMapper.map(noteEntity, NoteDto.class);
