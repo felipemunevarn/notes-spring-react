@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch": "/usr/bin/env /usr/lib/jvm/java-18-openjdk-amd64/bin/java -XX:+ShowCodeDetailsInExceptionMessages @/tmp/cp_bz046gp0rwj8dnepy29nle6x0.argfile com.failens.notes.NotesApplication",
+    "watch": "mvn -f ../../../../../pom.xml spring-boot:run",
     "dev": "concurrently \"npm run watch\" \"npm start\""
   },
   "eslintConfig": {

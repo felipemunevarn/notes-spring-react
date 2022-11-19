@@ -2,16 +2,18 @@
 
 This app was developed using Java with Spring for the backend, and JavaScript with React for the frontend. The database engine used is PostgreSQL
 
-# App for notes
+## Instructions
 
 First you need to ensure you have installed all following versions:
 
-Java -> openjdk 18.0.2-ea
-PostgreSQL -> 14.5
-npm -> 8.19.2
+- Java -> openjdk v.11
+- PostgreSQL -> v.14.5
+- npm -> v.8.19.2
+- Apache Maven -> v.3.6.3
 
-After checking you have al least versions above, simply go to the root directory of this app and execute:
+After checking you have at least versions above, simply go to the root directory of this app and execute:
 
+```console
 sh start-notes-app-sh
-
+```
 Then enjoy!!!
