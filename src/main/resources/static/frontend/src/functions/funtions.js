@@ -5,6 +5,12 @@ const allNotes = async (state) => {
     state(request.data);
 }
 
+const saveNote = async (body) => {
+    // const request = await axios.post('http://localhost:8080/notes' )
+    console.log(body)
+}
+
 export {
-    allNotes
+    allNotes,
+    saveNote
 }

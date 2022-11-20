@@ -56,6 +56,11 @@ code {
   border-bottom: 1px solid #eee;
 }
 
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .note {
   display: flex;
   width: 40%;

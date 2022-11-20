@@ -7,6 +7,7 @@ const Init = () => {
 
     const [notes, setNotes] = useState(null);
     const [show, setShow] = useState(false);
+    const [body, setBody] = useState({});
 
     const showModal = () => setShow(true)
     const cancelModal = () => setShow(false)
@@ -20,13 +21,16 @@ const Init = () => {
             <div>
                 <h1>My Notes</h1>
                 <button onClick={showModal}>Create note</button>
-                <NoteForm onCancel={cancelModal} show={show}/>
+                <NoteForm onCancel={cancelModal} body={body} setBody={setBody} show={show}/>
             </div>
             <div>
                 {notes !== null ? (
                     notes.map(note => (
                         <div key={note.id}>
-                            <Note note={note} onClick={showModal} onCancel={cancelModal} show={show}/>
+                            <Note note={note} onClick={showModal} 
+                                onCancel={cancelModal} show={show}
+                                body={body} setBody={setBody}    
+                            />
                         </div>
                     ))
                 ) : (
