@@ -2,6 +2,7 @@ package com.failens.notes.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,15 +14,17 @@ import javax.persistence.Table;
 public class Note {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
 
     private String content;
 
+    @Column(columnDefinition = "boolean default false")
     private boolean delete;
-
+    
+    @Column(columnDefinition = "boolean default false")
     private boolean archived;
 
     private Date modified;

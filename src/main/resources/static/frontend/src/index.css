@@ -19,6 +19,15 @@ code {
   padding: 2rem 0;
 }
 
+.init-content {
+  display: flex;
+  align-items: center;
+}
+
+.init-create-button {
+  margin: 2em;
+}
+
 .modal {
   position: fixed;
   left: 0;

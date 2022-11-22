@@ -18,10 +18,11 @@ const Init = () => {
 
     return (
         <>
-            <div>
+            <div className="init-content">
                 <h1>My Notes</h1>
-                <button onClick={showModal}>Create note</button>
+                <button className="init-create-button" onClick={showModal}>Create note</button>
                 <NoteForm onCancel={cancelModal} body={body} setBody={setBody} show={show}/>
+                <a href="/">Archived notes</a>
             </div>
             <div>
                 {notes !== null ? (
