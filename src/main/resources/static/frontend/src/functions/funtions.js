@@ -5,9 +5,9 @@ const allNotes = async (state) => {
     state(request.data);
 }
 
-const saveNote = async (body) => {
-    console.log(body);
+const saveNote = async (body, state) => {
     const request = await axios.post('http://localhost:8080/notes/new', body)
+    allNotes(state)
 }
 
 const formatDate = (date) => {

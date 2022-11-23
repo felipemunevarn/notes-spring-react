@@ -7,15 +7,14 @@ const NoteForm = props => {
     const [content, setContent] = useState("");
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const newNote = {
             'title':  title,
             'content': content,
             'modified': formatDate(new Date())
         }
-        saveNote(newNote)
-        e.preventDefault();
+        saveNote(newNote, props.setNotes)
         props.onCancel()
-        props.setNotes([...props.notes, newNote])
     }
 
     if (!props.show){
@@ -33,18 +32,23 @@ const NoteForm = props => {
                         <div>
                             <label htmlFor="">Title</label>
                             <input type="text" name="title" id="title" 
-                            onChange={e => setTitle(e.target.value)}/>
+                                onChange={e => setTitle(e.target.value)} 
+                                value={props.show}
+                            />
                         </div>
                         <div>
                             <label htmlFor="">Content</label>
                             <textarea name="content" id="content" cols="30" rows="10"
-                            onChange={e => setContent(e.target.value)}></textarea>
+                            onChange={e => setContent(e.target.value)} 
+                            value={props.note.id}
+                            >
+                            </textarea>
                         </div>
                     </form>
                 </div>
                 <div className="modal-footer">
                     <button onClick={props.onCancel}>Cancel</button>
-                    <button onClick={handleSubmit}>Save</button>
+                    <button onClick={(e) => handleSubmit(e)}>Save</button>
                 </div>
             </div>
         </div>
