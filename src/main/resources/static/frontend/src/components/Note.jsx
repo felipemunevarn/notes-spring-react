@@ -1,7 +1,7 @@
 import React from "react";
 import NoteForm from "./NoteForm";
 
-const Note = ({ note, onClick, onCancel, show, body, setBody }) => {
+const Note = ({ note, onClick, onCancel, show }) => {
     return (
         <>
             <div className="note">
@@ -15,7 +15,7 @@ const Note = ({ note, onClick, onCancel, show, body, setBody }) => {
                 <div className="note-icons">
                     <img src="../../icons8-filing-cabinet-64.png" alt="archive-icon" width="20" height="20" />
                     <img src="../../icons8-edit-80.png" alt="edit-icon" onClick={onClick} width="20" height="20" />
-                    <NoteForm onCancel={onCancel} show={show} body={body} setBody={setBody}/>
+                    <NoteForm onCancel={onCancel} show={show}/>
                     <img src="../../icons8-trash-can-50.png" alt="trash-icon" width="20" height="20" />
                 </div>
             </div>

@@ -15,6 +15,7 @@ const NoteForm = props => {
         saveNote(newNote)
         e.preventDefault();
         props.onCancel()
+        props.setNotes([...props.notes, newNote])
     }
 
     if (!props.show){

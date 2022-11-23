@@ -13,10 +13,9 @@ code {
 }
 
 .container {
-  width: 80%;
+  /* width: 80%; */
   height: 100vh;
-  margin: 0 auto;
-  padding: 2rem 0;
+  margin: 20px;
 }
 
 .init-content {
@@ -70,11 +69,16 @@ code {
   flex-direction: column;
 }
 
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .note {
   display: flex;
-  width: 40%;
-  height: 90px;
   border: solid;
+  margin: 5px;
+  min-width: 60%;
 }
 
 .note-image {
@@ -83,7 +87,7 @@ code {
 
 .note-txt {
   flex-direction: column;
-  width: 65%;
+  width: 60%;
 }
 
 .note-icons {
