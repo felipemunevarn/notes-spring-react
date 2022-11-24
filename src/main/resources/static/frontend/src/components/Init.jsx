@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { allNotes } from "../functions/funtions";
+import { allNotes, getNoteById } from "../functions/funtions";
 import Note from "./Note";
 import NoteForm from "./NoteForm";
 
 const Init = () => {
 
     const [notes, setNotes] = useState(null);
+    const [note, setNote] = useState(null);
     const [show, setShow] = useState(false);
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
-    const showModal = (note) => {
+    const showModal = (noteId) => {
         setShow(true)
-        // console.log(note)
+        getNoteById(setNote, noteId, setTitle, setContent);
+        console.log(noteId);
     }
+
     const cancelModal = () => setShow(false)
 
     useEffect(() => {
@@ -24,25 +29,29 @@ const Init = () => {
         <>
             <div className="init-content">
                 <h1>My Notes</h1>
-                <button className="init-create-button" onClick={showModal}>Create note</button>
-                {/* <NoteForm onCancel={cancelModal} show={show}
-                    notes={notes} setNotes={setNotes}
-                    note={noteTemp}
-                /> */}
+                <button className="init-create-button" 
+                    onClick={()=>showModal(0)}
+                >
+                    Create note
+                </button>
                 <a href="/">Archived notes</a>
             </div>
+            <NoteForm onCancel={cancelModal} show={show}
+                notes={notes} setNotes={setNotes}
+                note={note}
+                title={title} setTitle={setTitle}
+                content={content} setContent={setContent}
+            />
             <div className="notes-container">
                 {notes !== null ? (
                     notes.map(note => (
                         <div key={note.id}>
-                            <Note note={note} onClick={showModal} 
+                            <Note id={note.id} 
+                                onClickEdit={showModal} 
                                 onCancel={cancelModal} show={show}
-                                notes={notes} setNotes={setNotes}
-                            /> 
-                            <NoteForm onCancel={cancelModal} show={show}
-                                notes={notes} setNotes={setNotes}
+                                setNotes={setNotes}
                                 note={note}
-                            />
+                            /> 
                         </div>
                     ))
                 ) : (

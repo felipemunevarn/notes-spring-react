@@ -3,14 +3,14 @@ import { saveNote, formatDate } from "../functions/funtions";
 
 const NoteForm = props => {
     
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    // const [title, setTitle] = useState("");
+    // const [content, setContent] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const newNote = {
-            'title':  title,
-            'content': content,
+            'title':  props.title,
+            'content': props.content,
             'modified': formatDate(new Date())
         }
         saveNote(newNote, props.setNotes)
@@ -20,6 +20,9 @@ const NoteForm = props => {
     if (!props.show){
         return null;
     }
+
+    // setTitle(props.note.title)
+    // setContent(props.note.content)
 
     return (
         <div className="modal" onClick={props.onCancel}>
@@ -32,15 +35,15 @@ const NoteForm = props => {
                         <div>
                             <label htmlFor="">Title</label>
                             <input type="text" name="title" id="title" 
-                                onChange={e => setTitle(e.target.value)} 
-                                value={props.show}
+                                onChange={e => props.setTitle(e.target.value)} 
+                                defaultValue={props.title}
                             />
                         </div>
                         <div>
                             <label htmlFor="">Content</label>
                             <textarea name="content" id="content" cols="30" rows="10"
-                            onChange={e => setContent(e.target.value)} 
-                            value={props.note.id}
+                            onChange={e => props.setContent(e.target.value)} 
+                            defaultValue={props.content}
                             >
                             </textarea>
                         </div>

@@ -13,7 +13,6 @@ code {
 }
 
 .container {
-  /* width: 80%; */
   height: 100vh;
   margin: 20px;
 }
@@ -93,4 +92,23 @@ code {
 .note-icons {
   align-self: flex-end;
   justify-content: space-around;
+  cursor: pointer;
+}
+
+.note-icons .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: -1;
+}
+
+.note-icons:hover .tooltiptext {
+  visibility: visible;
 }

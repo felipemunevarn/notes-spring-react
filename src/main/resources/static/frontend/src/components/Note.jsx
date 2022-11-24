@@ -1,7 +1,12 @@
 import React from "react";
-import NoteForm from "./NoteForm";
+import { deleteNote } from "../functions/funtions";
 
-const Note = ({ note, onClick, onCancel, show, notes, setNotes }) => {
+const Note = ({ note, onClickEdit, setNotes }) => {
+
+    const handleClick = (id, body, state) => {
+        deleteNote(id, body, state)
+    }
+
     return (
         <>
             <div className="note">
@@ -13,13 +18,20 @@ const Note = ({ note, onClick, onCancel, show, notes, setNotes }) => {
                     <p>Last edited by {note.modified.substr(0,10)}</p>
                 </div>
                 <div className="note-icons">
-                    <img src="../../icons8-filing-cabinet-64.png" alt="archive-icon" width="20" height="20" />
-                    <img src="../../icons8-edit-80.png" alt="edit-icon" onClick={() => onClick()} width="20" height="20" />
-                    {/* <NoteForm onCancel={onCancel} show={show}
-                        notes={notes} setNotes={setNotes}
-                        note={note}
-                    /> */}
-                    <img src="../../icons8-trash-can-50.png" alt="trash-icon" width="20" height="20" />
+                    <img src="../../icons8-filing-cabinet-64.png" 
+                        alt="archive-icon" 
+                        width="20" height="20" />
+                    <span className="tooltiptext">Archive Note</span>
+                    <img src="../../icons8-edit-80.png" 
+                        alt="edit-icon" 
+                        onClick={() => onClickEdit(note.id)} 
+                        width="20" height="20" />
+                    <span className="tooltiptext">Edit Note</span>
+                    <img src="../../icons8-trash-can-50.png" 
+                        alt="trash-icon" 
+                        onClick={() => handleClick(note.id, note, setNotes)}
+                        width="20" height="20" />
+                    <span className="tooltiptext">Delete Note</span>
                 </div>
             </div>
         </> 

@@ -47,5 +47,12 @@ public class NoteServiceImpl implements INoteService {
 
     private NoteDto modelMapper(Optional<Note> noteEntity, Class<NoteDto> class1) {
         return modelMapper.map(noteEntity, class1);
-    }    
+    }
+
+    @Override
+    public void delete(Long id) {
+        Optional<Note> noteEntity = noteRepo.findById(id);
+        noteEntity.get().setDelete(true);
+        noteRepo.save(noteEntity.get());
+    }
 }

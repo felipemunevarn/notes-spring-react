@@ -5,8 +5,20 @@ const allNotes = async (state) => {
     state(request.data);
 }
 
+const getNoteById = async (noteState, id, titleState, contentState) => {
+    const request = await axios.get(`http://localhost:8080/notes/get/${id}`);
+    noteState(request.data);
+    titleState(request.data.title)
+    contentState(request.data.content)
+}
+
 const saveNote = async (body, state) => {
     const request = await axios.post('http://localhost:8080/notes/new', body)
+    allNotes(state)
+}
+
+const deleteNote = async (id, body, state) => {
+    const request = await axios.post(`http://localhost:8080/notes/delete/${id}`, body)
     allNotes(state)
 }
 
@@ -27,5 +39,7 @@ const formatDate = (date) => {
 export {
     allNotes,
     saveNote,
-    formatDate
+    formatDate,
+    getNoteById,
+    deleteNote
 }

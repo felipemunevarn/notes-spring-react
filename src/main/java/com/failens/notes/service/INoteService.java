@@ -8,4 +8,5 @@ public interface INoteService {
     public NoteDto save(NoteDto note);
     public List<NoteDto> getAll();
     public NoteDto get(Long id);
+    public void delete(Long id);
 }
