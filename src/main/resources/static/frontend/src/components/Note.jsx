@@ -3,8 +3,11 @@ import { deleteNote } from "../functions/funtions";
 
 const Note = ({ note, onClickEdit, setNotes }) => {
 
-    const handleClick = (id, body, state) => {
-        deleteNote(id, body, state)
+    const handleClick = (id, state) => {
+        deleteNote(id, state)
+        // console.log(id);
+        // console.log(body);
+        // console.log(state);
     }
 
     return (
@@ -29,7 +32,7 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                     <span className="tooltiptext">Edit Note</span>
                     <img src="../../icons8-trash-can-50.png" 
                         alt="trash-icon" 
-                        onClick={() => handleClick(note.id, note, setNotes)}
+                        onClick={() => handleClick(note.id, setNotes)}
                         width="20" height="20" />
                     <span className="tooltiptext">Delete Note</span>
                 </div>

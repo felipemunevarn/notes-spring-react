@@ -17,8 +17,8 @@ const saveNote = async (body, state) => {
     allNotes(state)
 }
 
-const deleteNote = async (id, body, state) => {
-    const request = await axios.post(`http://localhost:8080/notes/delete/${id}`, body)
+const deleteNote = async (id, state) => {
+    const request = await axios.put(`http://localhost:8080/notes/delete/${id}`)
     allNotes(state)
 }
 
