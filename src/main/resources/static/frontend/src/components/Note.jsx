@@ -1,13 +1,14 @@
 import React from "react";
-import { deleteNote } from "../functions/funtions";
+import { deleteNote, archiveNote } from "../functions/funtions";
 
 const Note = ({ note, onClickEdit, setNotes }) => {
 
-    const handleClick = (id, state) => {
+    const handleTrashClick = (id, state) => {
         deleteNote(id, state)
-        // console.log(id);
-        // console.log(body);
-        // console.log(state);
+    }
+
+    const handleArchiveClick = (id, state) => {
+        archiveNote(id, state)
     }
 
     return (
@@ -23,6 +24,7 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                 <div className="note-icons">
                     <img src="../../icons8-filing-cabinet-64.png" 
                         alt="archive-icon" 
+                        onClick={() => handleArchiveClick(note.id, setNotes)}
                         width="20" height="20" />
                     <span className="tooltiptext">Archive Note</span>
                     <img src="../../icons8-edit-80.png" 
@@ -32,7 +34,7 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                     <span className="tooltiptext">Edit Note</span>
                     <img src="../../icons8-trash-can-50.png" 
                         alt="trash-icon" 
-                        onClick={() => handleClick(note.id, setNotes)}
+                        onClick={() => handleTrashClick(note.id, setNotes)}
                         width="20" height="20" />
                     <span className="tooltiptext">Delete Note</span>
                 </div>

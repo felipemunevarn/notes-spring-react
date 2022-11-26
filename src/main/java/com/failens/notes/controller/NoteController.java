@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +41,11 @@ public class NoteController {
     @PutMapping("/delete/{id}")
     public void deleteNote(@PathVariable("id") Long id) {
         noteService.delete(id);
+    }
+
+    @PutMapping("/archive/{id}")
+    public void archiveNote(@PathVariable("id") Long id) {
+        noteService.archive(id);
     }
 
     @PutMapping("/update/{id}")

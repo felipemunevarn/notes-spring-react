@@ -17,8 +17,18 @@ const saveNote = async (body, state) => {
     allNotes(state)
 }
 
+const updateNote = async (id, body, state) => {
+    const request = await axios.put(`http://localhost:8080/notes/update/${id}`, body)
+    allNotes(state)
+}
+
 const deleteNote = async (id, state) => {
     const request = await axios.put(`http://localhost:8080/notes/delete/${id}`)
+    allNotes(state)
+}
+
+const archiveNote = async (id, state) => {
+    const request = await axios.put(`http://localhost:8080/notes/archive/${id}`)
     allNotes(state)
 }
 
@@ -41,5 +51,7 @@ export {
     saveNote,
     formatDate,
     getNoteById,
-    deleteNote
+    deleteNote,
+    archiveNote,
+    updateNote
 }

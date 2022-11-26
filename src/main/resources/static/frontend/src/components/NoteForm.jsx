@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { saveNote, formatDate } from "../functions/funtions";
+import { saveNote, formatDate, updateNote } from "../functions/funtions";
 
 const NoteForm = props => {
     
-    // const [title, setTitle] = useState("");
-    // const [content, setContent] = useState("");
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const newNote = {
@@ -13,16 +10,20 @@ const NoteForm = props => {
             'content': props.content,
             'modified': formatDate(new Date())
         }
-        saveNote(newNote, props.setNotes)
+        if (props.note) {
+            let obj1 = {...props.note, ...newNote}
+            props.setNote(obj1)
+            console.log(props.note)
+            // updateNote(props.note.id, props.note, props.setNotes)
+        } else {
+            saveNote(newNote, props.setNotes)
+        }
         props.onCancel()
     }
 
     if (!props.show){
         return null;
     }
-
-    // setTitle(props.note.title)
-    // setContent(props.note.content)
 
     return (
         <div className="modal" onClick={props.onCancel}>

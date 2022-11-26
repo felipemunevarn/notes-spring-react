@@ -13,8 +13,13 @@ const Init = () => {
 
     const showModal = (noteId) => {
         setShow(true)
-        getNoteById(setNote, noteId, setTitle, setContent);
-        console.log(noteId);
+        if (noteId === 0) {
+            setTitle("")
+            setContent("")
+            setNote(null)
+        } else {
+            getNoteById(setNote, noteId, setTitle, setContent)
+        }
     }
 
     const cancelModal = () => setShow(false)
@@ -38,7 +43,7 @@ const Init = () => {
             </div>
             <NoteForm onCancel={cancelModal} show={show}
                 notes={notes} setNotes={setNotes}
-                note={note}
+                note={note} setNote={setNote}
                 title={title} setTitle={setTitle}
                 content={content} setContent={setContent}
             />

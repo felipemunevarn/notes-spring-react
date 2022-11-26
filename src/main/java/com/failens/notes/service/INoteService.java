@@ -9,4 +9,5 @@ public interface INoteService {
     public List<NoteDto> getAll();
     public NoteDto get(Long id);
     public void delete(Long id);
+    public void archive(Long id);
 }
