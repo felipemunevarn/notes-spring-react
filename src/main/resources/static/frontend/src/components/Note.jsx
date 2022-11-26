@@ -29,16 +29,20 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                             width="20" height="20" />
                         <span className="toolTipArchive">Archive Note</span>
                     </div>
-                    <img src="../../icons8-edit-80.png" 
-                        alt="edit-icon" 
-                        onClick={() => onClickEdit(note.id)} 
-                        width="20" height="20" />
-                    {/* <span className="tooltiptext">Edit Note</span> */}
-                    <img src="../../icons8-trash-can-50.png" 
-                        alt="trash-icon" 
-                        onClick={() => handleTrashClick(note.id, setNotes)}
-                        width="20" height="20" />
-                    {/* <span className="tooltiptext">Delete Note</span> */}
+                    <div className="edit-icon">
+                        <img src="../../icons8-edit-80.png" 
+                            alt="edit-icon" 
+                            onClick={() => onClickEdit(note.id)} 
+                            width="20" height="20" />
+                        <span className="toolTipEdit">Edit Note</span>
+                    </div>
+                    <div className="trash-icon">
+                        <img src="../../icons8-trash-can-50.png" 
+                            alt="trash-icon" 
+                            onClick={() => handleTrashClick(note.id, setNotes)}
+                            width="20" height="20" />
+                        <span className="toolTipTrash">Delete Note</span>
+                    </div>
                 </div>
             </div>
         </> 
