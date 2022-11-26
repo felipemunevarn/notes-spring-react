@@ -22,21 +22,23 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                     <p>Last edited by {note.modified.substr(0,10)}</p>
                 </div>
                 <div className="note-icons">
-                    <img src="../../icons8-filing-cabinet-64.png" 
-                        alt="archive-icon" 
-                        onClick={() => handleArchiveClick(note.id, setNotes)}
-                        width="20" height="20" />
-                    <span className="tooltiptext">Archive Note</span>
+                    <div className="archive-icon">
+                        <img src="../../icons8-filing-cabinet-64.png" 
+                            alt="archive-icon" 
+                            onClick={() => handleArchiveClick(note.id, setNotes)}
+                            width="20" height="20" />
+                        <span className="toolTipArchive">Archive Note</span>
+                    </div>
                     <img src="../../icons8-edit-80.png" 
                         alt="edit-icon" 
                         onClick={() => onClickEdit(note.id)} 
                         width="20" height="20" />
-                    <span className="tooltiptext">Edit Note</span>
+                    {/* <span className="tooltiptext">Edit Note</span> */}
                     <img src="../../icons8-trash-can-50.png" 
                         alt="trash-icon" 
                         onClick={() => handleTrashClick(note.id, setNotes)}
                         width="20" height="20" />
-                    <span className="tooltiptext">Delete Note</span>
+                    {/* <span className="tooltiptext">Delete Note</span> */}
                 </div>
             </div>
         </> 

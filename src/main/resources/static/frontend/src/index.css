@@ -95,7 +95,7 @@ code {
   cursor: pointer;
 }
 
-.note-icons .tooltiptext {
+.archive-icon .toolTipArchive {
   visibility: hidden;
   width: 120px;
   background-color: black;
@@ -109,6 +109,6 @@ code {
   z-index: -1;
 }
 
-.note-icons:hover .tooltiptext {
+.archive-icon:hover .toolTipArchive {
   visibility: visible;
 }

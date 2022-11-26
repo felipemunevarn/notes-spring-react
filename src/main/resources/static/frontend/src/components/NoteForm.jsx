@@ -11,10 +11,8 @@ const NoteForm = props => {
             'modified': formatDate(new Date())
         }
         if (props.note) {
-            let obj1 = {...props.note, ...newNote}
-            props.setNote(obj1)
-            console.log(props.note)
-            // updateNote(props.note.id, props.note, props.setNotes)
+            let updatedNote = {...props.note, ...newNote}
+            updateNote(props.note.id, updatedNote, props.setNotes)
         } else {
             saveNote(newNote, props.setNotes)
         }
