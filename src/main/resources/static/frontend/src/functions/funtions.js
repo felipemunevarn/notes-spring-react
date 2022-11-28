@@ -33,17 +33,14 @@ const archiveNote = async (id, state) => {
 }
 
 const formatDate = (date) => {
-    let d = new Date(date);
-    let month = (d.getMonth() + 1).toString();
-    let day = d.getDate().toString();
-    let year = d.getFullYear();
-    if (month.length < 2) {
-      month = '0' + month;
-    }
-    if (day.length < 2) {
-      day = '0' + day;
-    }
-    return [year, month, day].join('-');
+    let UTC = 0 // Argentina, BsAs
+    let date_format_str = date.getUTCFullYear() + "-" +
+        ((date.getUTCMonth() + 1) > 9 ? (date.getUTCMonth() + 1) : ("0" + (date.getUTCMonth() + 1))) + "-" +
+        ((date.getUTCDate() > 9) ? (date.getUTCDate()) : ("0" + (date.getUTCDate()))) + "T" + 
+        (((date.getUTCHours() + UTC)) > 9 ? (date.getUTCHours() + UTC) : ("0" + (date.getUTCHours() + UTC))) + ":" + 
+        ((date.getUTCMinutes() > 9) ? (date.getUTCMinutes()) : ("0" + (date.getUTCMinutes()))) + ":" + 
+        ((date.getUTCSeconds() > 9) ? (date.getUTCSeconds()) : ("0" + (date.getUTCSeconds())));
+    return date_format_str;
 }
 
 export {

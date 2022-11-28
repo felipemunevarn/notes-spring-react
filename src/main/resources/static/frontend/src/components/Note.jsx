@@ -18,8 +18,8 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                     <img src="../../icons8-note-50light.png" alt="note-icon" width="75" height="75" />
                 </div>
                 <div className="note-txt">
-                    <h2>{note.title}</h2>
-                    <p>Last edited by {note.modified.substr(0,10)}</p>
+                    <h2 className="title-txt">{note.title}</h2>
+                    <p className="date-txt">Last edited by {note.modified.substr(0,10)}</p>
                 </div>
                 <div className="note-icons">
                     <div className="archive-icon">

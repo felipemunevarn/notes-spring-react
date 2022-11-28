@@ -77,7 +77,6 @@ code {
   display: flex;
   border: solid;
   margin: 5px;
-  min-width: 60%;
 }
 
 .note-image {
@@ -86,7 +85,14 @@ code {
 
 .note-txt {
   flex-direction: column;
-  width: 60%;
+}
+
+p.date-txt {
+  margin: 5px;
+}
+
+h2.title-txt {
+  margin-top: 15px;
 }
 
 .note-icons {
@@ -104,7 +110,6 @@ code {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-  margin: 2px;
   /* Position the tooltip text - see examples below! */
   position: absolute;
 }
