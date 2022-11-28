@@ -34,7 +34,22 @@ public class NoteServiceImpl implements INoteService {
         notesEntity = noteRepo.findAll();
         List<NoteDto> notesDto = new ArrayList<>();
         for (Note noteEntity : notesEntity) {
-            notesDto.add(modelMapper.map(noteEntity, NoteDto.class));
+            if (!noteEntity.isArchived()) {
+                notesDto.add(modelMapper.map(noteEntity, NoteDto.class));
+            }
+        }
+        return notesDto;
+    }
+
+    @Override
+    public List<NoteDto> getAllArchived() {
+        List<Note> notesEntity = new ArrayList<>();
+        notesEntity = noteRepo.findAll();
+        List<NoteDto> notesDto = new ArrayList<>();
+        for (Note noteEntity : notesEntity) {
+            if (noteEntity.isArchived()) {
+                notesDto.add(modelMapper.map(noteEntity, NoteDto.class));
+            }
         }
         return notesDto;
     }

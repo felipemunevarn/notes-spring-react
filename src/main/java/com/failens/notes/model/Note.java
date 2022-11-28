@@ -13,7 +13,7 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "note", schema = "public")
-@Where(clause = "delete=false AND archived=false")
+@Where(clause = "delete=false")
 public class Note {
     
     @Id

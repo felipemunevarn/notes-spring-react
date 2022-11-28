@@ -28,6 +28,11 @@ public class NoteController {
         return noteService.getAll();
     }
 
+    @GetMapping("archived/get")
+    public List<NoteDto> getAllArchived(){
+        return noteService.getAllArchived();
+    }
+
     @GetMapping("/get/{id}")
     public NoteDto getNote(@PathVariable("id") Long id){
         return noteService.get(id);

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { allNotes, getNoteById } from "../functions/funtions";
+import { allArchivedNotes, getNoteById } from "../functions/funtions";
 import Note from "./Note";
 import NoteForm from "./NoteForm";
 
-const Init = () => {
+const InitArchived = () => {
 
     const [notes, setNotes] = useState(null);
     const [note, setNote] = useState(null);
@@ -25,7 +25,7 @@ const Init = () => {
     const cancelModal = () => setShow(false)
 
     useEffect(() => {
-        allNotes(setNotes);
+        allArchivedNotes(setNotes);
     }, [])
 
     const noteTemp = ''
@@ -33,13 +33,8 @@ const Init = () => {
     return (
         <>
             <div className="init-content">
-                <h1>My Notes</h1>
-                <button className="init-create-button" 
-                    onClick={()=>showModal(0)}
-                >
-                    Create note
-                </button>
-                <a href="/archived">Archived notes</a>
+                <h1>Archived Notes</h1>
+                <a className="header-link" href="/">Go back to unarchived notes</a>
             </div>
             <NoteForm onCancel={cancelModal} show={show}
                 notes={notes} setNotes={setNotes}
@@ -67,4 +62,4 @@ const Init = () => {
     )
 }
 
-export default Init;
+export default InitArchived;

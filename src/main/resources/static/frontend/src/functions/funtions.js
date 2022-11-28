@@ -5,6 +5,11 @@ const allNotes = async (state) => {
     state(request.data);
 }
 
+const allArchivedNotes = async (state) => {
+    const request = await axios.get('http://localhost:8080/notes/archived/get');
+    state(request.data);
+}
+
 const getNoteById = async (noteState, id, titleState, contentState) => {
     const request = await axios.get(`http://localhost:8080/notes/get/${id}`);
     noteState(request.data);
@@ -50,5 +55,6 @@ export {
     getNoteById,
     deleteNote,
     archiveNote,
-    updateNote
+    updateNote,
+    allArchivedNotes
 }
