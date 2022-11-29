@@ -31,26 +31,31 @@ const NoteForm = props => {
                 </div>
                 <div className="modal-body">
                     <form className="modal-form" onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="">Title</label>
-                            <input type="text" name="title" id="title" 
+                        <div className="modal-fields">
+                            <label className="modal-lbl" htmlFor="">Title</label>
+                            <input className="modal-input-box"
+                                type="text" name="title" id="title" 
                                 onChange={e => props.setTitle(e.target.value)} 
                                 defaultValue={props.title}
+                                autoFocus
+                                placeholder="Title of the note"
                             />
                         </div>
-                        <div>
-                            <label htmlFor="">Content</label>
-                            <textarea name="content" id="content" cols="30" rows="10"
-                            onChange={e => props.setContent(e.target.value)} 
-                            defaultValue={props.content}
+                        <div className="modal-fields">
+                            <label className="modal-lbl" htmlFor="">Content</label>
+                            <textarea className="modal-input-box"
+                                name="content" id="content" cols="30" rows="10"
+                                onChange={e => props.setContent(e.target.value)} 
+                                defaultValue={props.content}
+                                placeholder="Content of the note"
                             >
                             </textarea>
                         </div>
                     </form>
                 </div>
                 <div className="modal-footer">
-                    <button onClick={props.onCancel}>Cancel</button>
-                    <button onClick={(e) => handleSubmit(e)}>Save</button>
+                    <button className="modal-button" onClick={props.onCancel}>Cancel</button>
+                    <button className="modal-button" onClick={(e) => handleSubmit(e)}>Save</button>
                 </div>
             </div>
         </div>
