@@ -74,7 +74,7 @@ public class NoteServiceImpl implements INoteService {
     @Override
     public void archive(Long id) {
         Optional<Note> noteEntity = noteRepo.findById(id);
-        noteEntity.get().setArchived(true);
+        noteEntity.get().setArchived(!noteEntity.get().isArchived());
         noteRepo.save(noteEntity.get());        
     }
 }

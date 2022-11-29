@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { deleteNote, archiveNote } from "../functions/funtions";
+import DeleteConfirm from "./DeleteConfirm";
 
-const Note = ({ note, onClickEdit, setNotes }) => {
-
+const Note = ({ note, onClickEdit, setNotes, show }) => {
+    
+    const [showDelete, setShowDelete] = useState(false);
+    
     const handleTrashClick = (id, state) => {
         deleteNote(id, state)
     }
@@ -10,6 +13,12 @@ const Note = ({ note, onClickEdit, setNotes }) => {
     const handleArchiveClick = (id, state) => {
         archiveNote(id, state)
     }
+
+    const showDeleteModal = () => {
+        setShowDelete(true)
+    }
+
+    const cancelDeleteModal = () => setShowDelete(false)
 
     return (
         <>
@@ -23,11 +32,12 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                 </div>
                 <div className="note-icons">
                     <div className="archive-icon">
-                        <img src="../../icons8-filing-cabinet-64.png" 
+                        <img 
+                            src={note.archived ? "../../icons8-upload-64.png" : "../../icons8-filing-cabinet-64.png"}
                             alt="archive-icon" 
                             onClick={() => handleArchiveClick(note.id, setNotes)}
                             width="20" height="20" />
-                        <span className="toolTipArchive">Archive Note</span>
+                        <span className="toolTipArchive">{note.archived ? "Unarchive Note" : "Archive Note"}</span>
                     </div>
                     <div className="edit-icon">
                         <img src="../../icons8-edit-80.png" 
@@ -39,10 +49,19 @@ const Note = ({ note, onClickEdit, setNotes }) => {
                     <div className="trash-icon">
                         <img src="../../icons8-trash-can-50.png" 
                             alt="trash-icon" 
-                            onClick={() => handleTrashClick(note.id, setNotes)}
+                            // onClick={() => handleTrashClick(note.id, setNotes)}
+                            onClick={()=>showDeleteModal()}
                             width="20" height="20" />
-                        <span className="toolTipTrash">Delete Note</span>
+                        <span className="toolTipTrash" onClick={()=>showDeleteModal()}>Delete Note</span>
                     </div>
+                    <DeleteConfirm 
+                        showDelete={showDelete} 
+                        cancelDeleteModal={cancelDeleteModal} 
+                        setShowDelete={setShowDelete}
+                        handleTrashClick={handleTrashClick}
+                        note={note}
+                        setNotes={setNotes}
+                    />
                 </div>
             </div>
         </> 
