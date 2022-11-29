@@ -5,7 +5,7 @@ import NoteForm from "./NoteForm";
 
 const InitArchived = () => {
 
-    const [notes, setNotes] = useState(null);
+    const [archivedNotes, setArchivedNotes] = useState(null);
     const [note, setNote] = useState(null);
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
@@ -25,7 +25,7 @@ const InitArchived = () => {
     const cancelModal = () => setShow(false)
 
     useEffect(() => {
-        allArchivedNotes(setNotes);
+        allArchivedNotes(setArchivedNotes);
     }, [])
 
     const noteTemp = ''
@@ -37,25 +37,25 @@ const InitArchived = () => {
                 <a className="header-link" href="/">Go back to unarchived notes</a>
             </div>
             <NoteForm onCancel={cancelModal} show={show}
-                notes={notes} setNotes={setNotes}
+                archivedNotes={archivedNotes} setArchivedNotes={setArchivedNotes}
                 note={note} setNote={setNote}
                 title={title} setTitle={setTitle}
                 content={content} setContent={setContent}
             />
             <div className="notes-container">
-                {notes !== null ? (
-                    notes.map(note => (
+                {archivedNotes !== null ? (
+                    archivedNotes.map(note => (
                         <div key={note.id}>
                             <Note id={note.id} 
                                 onClickEdit={showModal} 
                                 onCancel={cancelModal} show={show}
-                                setNotes={setNotes}
+                                setArchivedNotes={setArchivedNotes}
                                 note={note}
                             /> 
                         </div>
                     ))
                 ) : (
-                    'There are no notes yet'
+                    'There are no archived notes yet'
                 )}
             </div>
         </>        

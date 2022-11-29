@@ -12,7 +12,7 @@ const NoteForm = props => {
         }
         if (props.note) {
             let updatedNote = {...props.note, ...newNote}
-            updateNote(props.note.id, updatedNote, props.setNotes)
+            updateNote(props.note.id, updatedNote, (props.note.archived ? props.setArchivedNotes : props.setNotes))
         } else {
             saveNote(newNote, props.setNotes)
         }

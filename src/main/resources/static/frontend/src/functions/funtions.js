@@ -32,9 +32,9 @@ const deleteNote = async (id, state) => {
     allNotes(state)
 }
 
-const archiveNote = async (id, state) => {
+const archiveNote = async (id, state, archived) => {
     const request = await axios.put(`http://localhost:8080/notes/archive/${id}`)
-    allNotes(state)
+    archived ? allArchivedNotes(state) : allNotes(state)
 }
 
 const formatDate = (date) => {
