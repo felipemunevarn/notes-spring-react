@@ -6,8 +6,8 @@ const Note = ({ note, onClickEdit, setNotes, setArchivedNotes }) => {
     
     const [showDelete, setShowDelete] = useState(false);
     
-    const handleTrashClick = (id, state) => {
-        deleteNote(id, state)
+    const handleTrashClick = (id, state, archived) => {
+        deleteNote(id, state, archived)
     }
 
     const handleArchiveClick = (id, state, archived) => {

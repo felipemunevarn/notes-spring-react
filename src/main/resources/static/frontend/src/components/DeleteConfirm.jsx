@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 const DeleteConfirm = props => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.handleTrashClick(props.note.id, props.setNotes)
+        props.handleTrashClick(
+            props.note.id, 
+            (props.note.archived ? props.setArchivedNotes : props.setNotes),
+            (props.note.archived ? true : false))
         props.cancelDeleteModal()
     }
 

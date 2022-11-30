@@ -24,12 +24,12 @@ const saveNote = async (body, state) => {
 
 const updateNote = async (id, body, state) => {
     const request = await axios.put(`http://localhost:8080/notes/update/${id}`, body)
-    allNotes(state)
+    body.archived ? allArchivedNotes(state) : allNotes(state)
 }
 
-const deleteNote = async (id, state) => {
+const deleteNote = async (id, state, archived) => {
     const request = await axios.put(`http://localhost:8080/notes/delete/${id}`)
-    allNotes(state)
+    archived ? allArchivedNotes(state) : allNotes(state)
 }
 
 const archiveNote = async (id, state, archived) => {
