@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { saveNote, formatDate, updateNote } from "../functions/funtions";
+import { saveNote, updateNote, formatDate } from "../functions/funtions";
+import { saveCategory } from "../functions/categoryFunctions";
+import Category from "./Category";
 
 const NoteForm = props => {
     
+    const [categories, setCategories] = useState(null);
+    const [categoryName, setCategoryName] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newNote = {
@@ -19,6 +24,14 @@ const NoteForm = props => {
         props.onCancel()
     }
 
+    const handleAdd = (e) => {
+        let newCategory = {
+            'name': categoryName
+        }
+        saveCategory(newCategory, setCategories)
+        e.preventDefault()
+    }
+    
     if (!props.show){
         return null;
     }
@@ -30,7 +43,10 @@ const NoteForm = props => {
                     <h1 className="modal-title">Create / Edit note</h1>
                 </div>
                 <div className="modal-body">
-                    <form className="modal-form" onSubmit={handleSubmit}>
+                    <form className="modal-form"
+                        onKeyDown={e => {if (e.key === "Escape") {props.onCancel()}}} 
+                        // onSubmit={handleSubmit}
+                    >
                         <div className="modal-fields">
                             <label className="modal-lbl" htmlFor="">Title</label>
                             <input className="modal-input-box"
@@ -51,6 +67,26 @@ const NoteForm = props => {
                             >
                             </textarea>
                         </div>
+                        <div className="modal-fields">
+                            <label className="modal-lbl" htmlFor="">Categories</label>
+                            <div className="modal-categories-box">
+                                {categories.map(category => 
+                                    <Category name={category.name}/>)}
+                            </div>
+                        </div>
+                        <div className="modal-fields">
+                            <label className="modal-lbl" htmlFor="">Category</label>
+                            <input className="modal-input-box"
+                                type="text" name="category" id="category" 
+                                onChange={e => setCategoryName(e.target.value)}
+                                placeholder="Name of the category"
+                            />
+                            <button className="modal-button" 
+                                onClick={e => handleAdd(e)}
+                            >
+                                Add
+                            </button>
+                        </div>
                     </form>
                 </div>
                 <div className="modal-footer">
@@ -62,4 +98,4 @@ const NoteForm = props => {
     )
 }
 
-export default NoteForm;
+export default NoteForm;    

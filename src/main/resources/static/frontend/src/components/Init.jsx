@@ -10,6 +10,7 @@ const Init = () => {
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [category, setCategory] = useState("");
 
     const showModal = (noteId) => {
         setShow(true)
@@ -46,6 +47,7 @@ const Init = () => {
                 note={note} setNote={setNote}
                 title={title} setTitle={setTitle}
                 content={content} setContent={setContent}
+                category={category} setCategory={setCategory}
             />
             <div className="notes-container">
                 {notes !== null ? (
@@ -54,9 +56,8 @@ const Init = () => {
                             <Note id={note.id} 
                                 onClickEdit={showModal} 
                                 onCancel={cancelModal} show={show}
-                                setNotes={setNotes}
-                                note={note}
-                            /> 
+                                note={note} setNotes={setNotes}
+                            />
                         </div>
                     ))
                 ) : (

@@ -1,12 +1,16 @@
 package com.failens.notes.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+// import javax.persistence.JoinTable;
+// import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -32,15 +36,23 @@ public class Note {
 
     private Date modified;
 
+    @ManyToMany
+    // @JoinTable(
+    //     name = "note_category", 
+    //     joinColumns = @JoinColumn(name = "note_id"), 
+    //     inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
+
     public Note(){
     }
 
-    public Note(String title, String content, Date modified) {
+    public Note(String title, String content, Date modified, Set<Category> categories) {
         this.title = title;
         this.content = content;
         this.delete = false;
         this.archived = false;
         this.modified = modified;
+        this.categories = categories;
     }
 
     public Long getId() {
@@ -89,5 +101,13 @@ public class Note {
 
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }

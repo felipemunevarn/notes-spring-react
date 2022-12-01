@@ -18,7 +18,7 @@ const getNoteById = async (noteState, id, titleState, contentState) => {
 }
 
 const saveNote = async (body, state) => {
-    const request = await axios.post('http://localhost:8080/notes/new', body)
+    await axios.post('http://localhost:8080/notes/new', body)
     allNotes(state)
 }
 

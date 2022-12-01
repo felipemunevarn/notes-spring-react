@@ -1,6 +1,9 @@
 package com.failens.notes.dto;
 
 import java.util.Date;
+import java.util.Set;
+
+import com.failens.notes.model.Category;
 
 public class NoteDto {
     
@@ -10,16 +13,18 @@ public class NoteDto {
     private boolean delete;
     private boolean archived;
     private Date modified;
+    private Set<Category> categories;
 
     public NoteDto() {
     }
 
-    public NoteDto(String title, String content, boolean delete, boolean archived, Date modified) {
+    public NoteDto(String title, String content, boolean delete, boolean archived, Date modified, Set<Category> categories) {
         this.title = title;
         this.content = content;
         this.delete = delete;
         this.archived = archived;
         this.modified = modified;
+        this.categories = categories;
     }
 
     public Long getId() {
@@ -68,5 +73,13 @@ public class NoteDto {
 
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
