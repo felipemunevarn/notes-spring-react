@@ -57,6 +57,20 @@ code {
   height: 156px;
   border: solid;
   border-width: 0.1em;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+.category-group {
+  display: flex;
+  width: fit-content;
+}
+
+.category-txt{
+  margin: 0.1em;
+  font-size: small;
 }
 
 .modal-fields {

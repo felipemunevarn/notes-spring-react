@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { saveNote, updateNote, formatDate } from "../functions/funtions";
-import { saveCategory } from "../functions/categoryFunctions";
+import { saveCategory, allCategories } from "../functions/categoryFunctions";
 import Category from "./Category";
 
 const NoteForm = props => {
@@ -13,7 +13,8 @@ const NoteForm = props => {
         const newNote = {
             'title':  props.title,
             'content': props.content,
-            'modified': formatDate(new Date())
+            'modified': formatDate(new Date()),
+            'categories': categories
         }
         if (props.note) {
             let updatedNote = {...props.note, ...newNote}
@@ -24,11 +25,21 @@ const NoteForm = props => {
         props.onCancel()
     }
 
+    useEffect(() => {
+        allCategories(setCategories);
+    }, [])
+    
     const handleAdd = (e) => {
         let newCategory = {
             'name': categoryName
         }
-        saveCategory(newCategory, setCategories)
+        // saveCategory(newCategory, setCategories)
+        setCategories([...categories, newCategory])
+        e.preventDefault()
+    }
+
+    const handleDelete = (e, name) => {
+        setCategories(categories.filter(category => category.name !== name))        
         e.preventDefault()
     }
     
@@ -71,7 +82,8 @@ const NoteForm = props => {
                             <label className="modal-lbl" htmlFor="">Categories</label>
                             <div className="modal-categories-box">
                                 {categories.map(category => 
-                                    <Category name={category.name}/>)}
+                                    <Category name={category.name}
+                                    onDelete={handleDelete}/>)}
                             </div>
                         </div>
                         <div className="modal-fields">
@@ -98,4 +110,4 @@ const NoteForm = props => {
     )
 }
 
-export default NoteForm;    
+export default NoteForm;

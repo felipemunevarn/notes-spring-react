@@ -21,6 +21,7 @@ const Init = () => {
         } else {
             getNoteById(setNote, noteId, setTitle, setContent)
         }
+
     }
 
     const cancelModal = () => setShow(false)
