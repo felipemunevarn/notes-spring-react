@@ -2,12 +2,15 @@ package com.failens.notes.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "category", schema = "public")
@@ -19,7 +22,7 @@ public class Category {
 
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", cascade=CascadeType.PERSIST)
     private Set<Note> notes;
 
     public Category() {
@@ -39,6 +42,7 @@ public class Category {
         this.id = id;
     }
 
+    @JsonIgnore
     public Set<Note> getNotes() {
         return notes;
     }

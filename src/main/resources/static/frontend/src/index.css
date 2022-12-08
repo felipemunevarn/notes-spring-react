@@ -63,6 +63,10 @@ code {
   align-content: space-between;
 }
 
+.category-delete {
+  cursor: pointer;
+}
+
 .category-group {
   display: flex;
   width: fit-content;

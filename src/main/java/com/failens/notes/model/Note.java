@@ -3,6 +3,7 @@ package com.failens.notes.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Note {
 
     private Date modified;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.PERSIST)
     // @JoinTable(
     //     name = "note_category", 
     //     joinColumns = @JoinColumn(name = "note_id"), 
