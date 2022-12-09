@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { allNotes, getNoteById } from "../functions/funtions";
+import { allCategories } from "../functions/categoryFunctions";
 import Note from "./Note";
 import NoteForm from "./NoteForm";
 
@@ -11,6 +12,9 @@ const Init = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [category, setCategory] = useState("");
+    const [categories, setCategories] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
 
     const showModal = (noteId) => {
         setShow(true)
@@ -28,6 +32,7 @@ const Init = () => {
 
     useEffect(() => {
         allNotes(setNotes);
+        allCategories(setCategories);
     }, [])
 
     const noteTemp = ''
@@ -49,7 +54,24 @@ const Init = () => {
                 title={title} setTitle={setTitle}
                 content={content} setContent={setContent}
                 category={category} setCategory={setCategory}
+                categories={categories} setCategories={setCategories}
             />
+            <div>
+                <label htmlFor="categories">Category filter</label>
+                <select name="categories" id="categories"
+                    onChange={e => setSelectedCategory(e.target.value)}
+                >
+                    {categories ? (
+                        categories.map(category => 
+                            <option value={category.name}>{category.name}</option>
+                        )
+                    ):("There are not categories")
+                    }
+                    {/* <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option> */}
+                </select>
+            </div>
             <div className="notes-container">
                 {notes !== null ? (
                     notes.map(note => (

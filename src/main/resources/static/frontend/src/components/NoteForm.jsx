@@ -5,7 +5,6 @@ import Category from "./Category";
 
 const NoteForm = props => {
     
-    const [categories, setCategories] = useState(null);
     const [categoryName, setCategoryName] = useState("");
 
     const handleSubmit = (e) => {
@@ -14,7 +13,7 @@ const NoteForm = props => {
             'title':  props.title,
             'content': props.content,
             'modified': formatDate(new Date()),
-            'categories': categories
+            'categories': props.categories
         }
         if (props.note) {
             let updatedNote = {...props.note, ...newNote}
@@ -24,22 +23,18 @@ const NoteForm = props => {
         }
         props.onCancel()
     }
-
-    useEffect(() => {
-        allCategories(setCategories);
-    }, [])
     
     const handleAdd = (e) => {
         let newCategory = {
             'name': categoryName
         }
         // saveCategory(newCategory, setCategories)
-        setCategories([...categories, newCategory])
+        props.setCategories([...props.categories, newCategory])
         e.preventDefault()
     }
 
     const handleDelete = (e, name) => {
-        setCategories(categories.filter(category => category.name !== name))        
+        props.setCategories(props.categories.filter(category => category.name !== name))        
         e.preventDefault()
     }
     
@@ -56,7 +51,6 @@ const NoteForm = props => {
                 <div className="modal-body">
                     <form className="modal-form"
                         onKeyDown={e => {if (e.key === "Escape") {props.onCancel()}}} 
-                        // onSubmit={handleSubmit}
                     >
                         <div className="modal-fields">
                             <label className="modal-lbl" htmlFor="">Title</label>
@@ -81,7 +75,7 @@ const NoteForm = props => {
                         <div className="modal-fields">
                             <label className="modal-lbl" htmlFor="">Categories</label>
                             <div className="modal-categories-box">
-                                {categories.map(category => 
+                                {props.categories.map(category => 
                                     <Category name={category.name}
                                     onDelete={handleDelete}/>)}
                             </div>
