@@ -14,7 +14,7 @@ const Init = () => {
     const [category, setCategory] = useState("");
     const [categories, setCategories] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
-
+    const [filteredList, setFileteredList] = useState(null)
 
     const showModal = (noteId) => {
         setShow(true)
@@ -25,7 +25,6 @@ const Init = () => {
         } else {
             getNoteById(setNote, noteId, setTitle, setContent)
         }
-
     }
 
     const cancelModal = () => setShow(false)
@@ -33,9 +32,25 @@ const Init = () => {
     useEffect(() => {
         allNotes(setNotes);
         allCategories(setCategories);
+        allNotes(setFileteredList)
     }, [])
+    
+    useEffect(() => {
+        if (notes !== null && selectedCategory !== "No Filter") {
+            setFileteredList(filterNotes(notes));
+        } else {
+            allNotes(setFileteredList)
+        }
+    }, [selectedCategory])
+            
+    const filterNotes = (unfilteredNotes) => {
+        return unfilteredNotes.filter(note => note.categories.some(cat => cat.name === selectedCategory))
+    }
 
-    const noteTemp = ''
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value)
+        e.preventDefault()
+    }
 
     return (
         <>
@@ -59,22 +74,23 @@ const Init = () => {
             <div>
                 <label htmlFor="categories">Category filter</label>
                 <select name="categories" id="categories"
-                    onChange={e => setSelectedCategory(e.target.value)}
+                    onChange={e => handleCategoryChange(e)}
                 >
+                    <option value={null}>No Filter</option>
                     {categories ? (
-                        categories.map(category => 
-                            <option value={category.name}>{category.name}</option>
+                        categories.map(category =>
+                                <option key={category.id} 
+                                    value={category.name}
+                                >{category.name}
+                                </option>
                         )
                     ):("There are not categories")
                     }
-                    {/* <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option> */}
                 </select>
             </div>
             <div className="notes-container">
-                {notes !== null ? (
-                    notes.map(note => (
+                {filteredList !== null ? (
+                    filteredList.map(note => (
                         <div key={note.id}>
                             <Note id={note.id} 
                                 onClickEdit={showModal} 
