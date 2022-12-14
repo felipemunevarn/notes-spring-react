@@ -17,28 +17,33 @@ import com.failens.notes.service.ICategoryService;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/api")
 public class CategoryController {
 
     @Autowired
     ICategoryService categoryService;
 
-    @GetMapping("/get")
+    @GetMapping("/categories/get")
     public List<CategoryDto> getAll(){
         return categoryService.getAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/categories/get/{id}")
     public CategoryDto getCategory(@PathVariable("id") Long id){
         return categoryService.get(id);
     }
 
-    @PostMapping("/new")
+    @GetMapping("/notes/get/{id}/categories")
+    public List<CategoryDto> getAllCategoriesByNoteId(@PathVariable("id") Long id){
+        return categoryService.getAllByNote(id);
+    }
+
+    @PostMapping("/categories/new")
     public CategoryDto newCategory(@RequestBody CategoryDto category){
         return categoryService.save(category);
     }
 
-    @PutMapping("/delete/{id}")
+    @PutMapping("/categories/delete/{id}")
     public void deleteCategory(@PathVariable("id") Long id) {
         categoryService.delete(id);
     }

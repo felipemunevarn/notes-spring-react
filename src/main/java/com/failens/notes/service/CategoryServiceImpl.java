@@ -38,11 +38,12 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         return categoriesDto;
     }
-
+    
     @Override
     public List<CategoryDto> getAllByNote(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Category> categoryEntity = categoryRepo.findCategoriesByNoteId(id);
+        List<CategoryDto> categoriesDto = new ArrayList<>();
+        return categoriesDto.add(modelMapper(categoryEntity, CategoryDto.class));
     }
 
     @Override

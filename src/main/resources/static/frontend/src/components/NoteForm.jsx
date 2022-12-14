@@ -9,6 +9,9 @@ const NoteForm = props => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        for (const newCategory of props.categories) {
+            saveCategory(newCategory, setCategories)
+        }
         const newNote = {
             'title':  props.title,
             'content': props.content,
@@ -28,7 +31,6 @@ const NoteForm = props => {
         let newCategory = {
             'name': categoryName
         }
-        // saveCategory(newCategory, setCategories)
         props.setCategories([...props.categories, newCategory])
         e.preventDefault()
     }

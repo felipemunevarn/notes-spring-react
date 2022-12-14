@@ -10,11 +10,12 @@ const allArchivedNotes = async (state) => {
     state(request.data);
 }
 
-const getNoteById = async (noteState, id, titleState, contentState) => {
+const getNoteById = async (id, noteState, titleState, contentState, categoriesState) => {
     const request = await axios.get(`http://localhost:8080/notes/get/${id}`);
     noteState(request.data);
     titleState(request.data.title)
     contentState(request.data.content)
+    categoriesState(request.data.categories);
 }
 
 const saveNote = async (body, state) => {

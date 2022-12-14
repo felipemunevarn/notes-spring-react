@@ -38,6 +38,11 @@ public class NoteController {
         return noteService.get(id);
     }
 
+    @GetMapping("/get/{id}/categories")
+    public NoteDto getNote(@PathVariable("id") Long id){
+        return noteService.get(id);
+    }
+
     @PostMapping("/new")
     public NoteDto newNote(@RequestBody NoteDto note){
         return noteService.save(note);

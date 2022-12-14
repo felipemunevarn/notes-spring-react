@@ -22,8 +22,9 @@ const Init = () => {
             setTitle("")
             setContent("")
             setNote(null)
+            setCategories([])
         } else {
-            getNoteById(setNote, noteId, setTitle, setContent)
+            getNoteById(noteId, setNote, setTitle, setContent, setCategories)
         }
     }
 
@@ -34,6 +35,10 @@ const Init = () => {
         allCategories(setCategories);
         allNotes(setFileteredList)
     }, [])
+
+    useEffect(() => {
+        allNotes(setFileteredList)
+    }, [notes])
     
     useEffect(() => {
         if (notes !== null && selectedCategory !== "No Filter") {
