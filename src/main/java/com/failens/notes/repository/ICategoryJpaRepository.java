@@ -10,5 +10,6 @@ import com.failens.notes.model.Category;
 
 @Repository
 public interface ICategoryJpaRepository extends JpaRepository<Category, Long> {
-    List<Category> findCategoriesByNoteId(Long id);
+    List<Category> findCategoriesByNotes(Long id);
+    Category findByName(String name);
 }

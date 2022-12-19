@@ -1,6 +1,7 @@
 package com.failens.notes.model;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -112,9 +113,9 @@ public class Note {
         this.categories = categories;
     }
 
-    public void addCategory(Category category) {
-        this.categories.add(category);
-        category.getNotes().add(this);
+    public void addCategory(Category _category) {
+        this.categories.add(_category);
+        _category.getNotes().add(this);
     }
       
       public void removeTag(long categoryId) {

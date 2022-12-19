@@ -8,7 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.failens.notes.dto.CategoryDto;
 import com.failens.notes.dto.NoteDto;
+import com.failens.notes.model.Category;
 import com.failens.notes.model.Note;
 import com.failens.notes.repository.INoteJpaRepository;
 

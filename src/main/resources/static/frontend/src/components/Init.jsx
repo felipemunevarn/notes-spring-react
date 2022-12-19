@@ -17,7 +17,6 @@ const Init = () => {
     const [filteredList, setFileteredList] = useState(null)
 
     const showModal = (noteId) => {
-        setShow(true)
         if (noteId === 0) {
             setTitle("")
             setContent("")
@@ -26,9 +25,14 @@ const Init = () => {
         } else {
             getNoteById(noteId, setNote, setTitle, setContent, setCategories)
         }
+        setTimeout(() => {setShow(true)}, 300)
     }
 
-    const cancelModal = () => setShow(false)
+    const cancelModal = () => {
+        setShow(false)
+        allCategories(setCategories)
+    }
+
 
     useEffect(() => {
         allNotes(setNotes);
@@ -38,6 +42,7 @@ const Init = () => {
 
     useEffect(() => {
         allNotes(setFileteredList)
+        allCategories(setCategories)
     }, [notes])
     
     useEffect(() => {

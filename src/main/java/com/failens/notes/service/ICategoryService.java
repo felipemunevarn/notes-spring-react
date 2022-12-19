@@ -10,4 +10,5 @@ public interface ICategoryService {
     public List<CategoryDto> getAllByNote(Long id);
     public CategoryDto get(Long id);
     public void delete(Long id);
+    public List<CategoryDto> addCategory(Long noteId, List<CategoryDto> category);
 }

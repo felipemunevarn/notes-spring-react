@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { saveNote, updateNote, formatDate } from "../functions/funtions";
-import { saveCategory, allCategories } from "../functions/categoryFunctions";
+import { saveCategory, allCategories, addCategory } from "../functions/categoryFunctions";
 import Category from "./Category";
 
 const NoteForm = props => {
@@ -9,20 +9,22 @@ const NoteForm = props => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        for (const newCategory of props.categories) {
-            saveCategory(newCategory, setCategories)
-        }
+        // for (const newCategory of props.categories) {
+        //     saveCategory(newCategory, props.setCategories)
+        // }
         const newNote = {
             'title':  props.title,
             'content': props.content,
             'modified': formatDate(new Date()),
-            'categories': props.categories
+            // 'categories': props.categories
         }
         if (props.note) {
             let updatedNote = {...props.note, ...newNote}
             updateNote(props.note.id, updatedNote, (props.note.archived ? props.setArchivedNotes : props.setNotes))
+            addCategory(props.note.id, props.categories, props.setCategories)
         } else {
             saveNote(newNote, props.setNotes)
+            addCategory(props.notes[props.notes.length - 1].id, props.categories, props.setCategories)
         }
         props.onCancel()
     }

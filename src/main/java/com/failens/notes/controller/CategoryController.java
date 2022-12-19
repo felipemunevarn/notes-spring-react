@@ -1,5 +1,6 @@
 package com.failens.notes.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.failens.notes.dto.CategoryDto;
+import com.failens.notes.model.Category;
 import com.failens.notes.service.ICategoryService;
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -33,9 +35,9 @@ public class CategoryController {
         return categoryService.get(id);
     }
 
-    @GetMapping("/notes/get/{id}/categories")
-    public List<CategoryDto> getAllCategoriesByNoteId(@PathVariable("id") Long id){
-        return categoryService.getAllByNote(id);
+    @PostMapping("/notes/get/{id}/categories")
+    public List<CategoryDto> addCategory(@PathVariable("id") Long id, @RequestBody List<CategoryDto> categoryRequest){
+        return categoryService.addCategory(id, categoryRequest);
     }
 
     @PostMapping("/categories/new")
